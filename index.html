@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 1st Anniversary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #2c1810;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .card {
+            width: 100%;
+            max-width: 900px;
+            height: 550px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            display: flex;
+        }
+        
+        /* REPLACE THIS BACKGROUND URL WITH YOUR IMAGE */
+        .card-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1519378058457-4c29a0a2efac');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7);
+            z-index: 1;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+        
+        /* Side picture containers */
+        .side-picture {
+            width: 180px;
+            height: 100%;
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .picture-frame {
+            width: 150px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 3px solid rgba(255, 215, 0, 0.7);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            margin: 15px 0;
+        }
+        
+        .picture-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Main content area */
+        .card-content {
+            position: relative;
+            z-index: 3;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 30px;
+            color: white;
+            text-align: center;
+        }
+        
+        /* Hotel name - distinctive design */
+        .hotel-name {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            color: #ffd700;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+            padding: 15px 40px;
+            border-radius: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hotel-name:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+        
+        .hotel-name:hover:before {
+            left: 100%;
+        }
+        
+        /* Anniversary title - stays distinctive */
+        .anniversary-title {
+            font-size: 3rem;
+            margin: 20px 0 30px;
+            font-family: 'Dancing Script', cursive;
+            color: #ffd700;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+        }
+        
+        /* Message area - ALL TEXT HAS SAME STYLING */
+        .message-container {
+            background: rgba(0, 0, 0, 0.65);
+            padding: 25px 35px;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* All message text now has the same style */
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+            color: #f5f5f5;
+            font-weight: 400;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Blessing text now matches regular message text */
+        .blessing {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-top: 25px;
+            color: #f5f5f5;
+            font-weight: 400;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .footer {
+            margin-top: 25px;
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        /* Decorative elements */
+        .decoration {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+            gap: 15px;
+        }
+        
+        .line {
+            height: 1px;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+        }
+        
+        .heart {
+            color: #ffd700;
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        
+        @media (max-width: 900px) {
+            .card {
+                height: auto;
+                flex-direction: column;
+                max-width: 600px;
+            }
+            
+            .side-picture {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                justify-content: space-around;
+                padding: 20px 10px;
+            }
+            
+            .picture-frame {
+                width: 120px;
+                height: 160px;
+                margin: 0 10px;
+            }
+            
+            .card-content {
+                padding: 30px 20px;
+            }
+            
+            .hotel-name {
+                font-size: 2rem;
+                padding: 12px 30px;
+            }
+            
+            .anniversary-title {
+                font-size: 2.5rem;
+            }
+            
+            .message, .blessing {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .side-picture {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .picture-frame {
+                width: 140px;
+                height: 180px;
+                margin: 10px 0;
+            }
+            
+            .hotel-name {
+                font-size: 1.8rem;
+            }
+            
+            .anniversary-title {
+                font-size: 2.2rem;
+            }
+            
+            .message-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- BACKGROUND IMAGE - REPLACE THE URL BELOW -->
+        <div class="card-background"></div>
+        <div class="overlay"></div>
+        
+        <!-- LEFT PICTURE AREA - ADD YOUR IMAGE HERE -->
+        <div class="side-picture left-picture">
+            <div class="picture-frame">
+                <!-- REPLACE THIS WITH YOUR LEFT IMAGE -->
+                <img src="seats.jpeg" alt="Left Picture">
+            </div>
+            <div class="picture-frame">
+                <!-- REPLACE THIS WITH YOUR LEFT IMAGE -->
+                <img src="roses.jpeg" alt="Left Picture">
+            </div>
+        </div>
+        
+        <!-- MAIN CONTENT AREA -->
+        <div class="card-content">
+            <h1 class="hotel-name">Arch Apartments & Hotel</h1>
+            
+            <div class="decoration">
+                <div class="line"></div>
+                <div class="heart">❤️</div>
+                <div class="line"></div>
+            </div>
+            
+            <h2 class="anniversary-title">Happy 1st Anniversary</h2>
+            
+            <div class="message-container">
+                <p class="message">
+                    Arch Apartments and Hotel would like to wish you a happy 1st anniversary.
+                </p>
+                <p class="message">
+                    On this special day a year ago, you gave us the opportunity to host your colourful ceremony.
+                </p>
+                
+                <p class="blessing">
+                    May God continue to bless your marriage and grant you many many years filled with love and laughter!
+                </p>
+            </div>
+            
+            <div class="footer">
+                With warmest regards,<br>The Arch Apartments & Hotel Team
+            </div>
+        </div>
+        
+        <!-- RIGHT PICTURE AREA - ADD YOUR IMAGE HERE -->
+        <div class="side-picture right-picture">
+            <div class="picture-frame">
+                <!-- REPLACE THIS WITH YOUR RIGHT IMAGE -->
+                <img src="seat.jpeg" alt="Right Picture">
+            </div>
+            <div class="picture-frame">
+                <!-- REPLACE THIS WITH YOUR RIGHT IMAGE -->
+                <img src="roses.jpeg" alt="Right Picture">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
